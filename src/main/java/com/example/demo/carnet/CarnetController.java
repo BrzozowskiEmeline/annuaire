@@ -38,7 +38,7 @@ public class CarnetController {
 		ModelAndView mav = new ModelAndView ("pages/carnets");
 		mav.addObject("carnets",listeCarnets);
 		return mav;
-
+		// commentaire en plus pour tester le GitKraken
 	}
 	
 	//@GetMapping , GetMapping et Request ici ,c'est exactement la meme chose
@@ -69,6 +69,6 @@ public class CarnetController {
 	}
 	
 	
-	
+
 
 }

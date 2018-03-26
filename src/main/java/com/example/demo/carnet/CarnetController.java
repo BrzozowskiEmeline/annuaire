@@ -38,7 +38,7 @@ public class CarnetController {
 		ModelAndView mav = new ModelAndView ("pages/carnets");
 		mav.addObject("carnets",listeCarnets);
 		return mav;
-// commentaire , une deuxième fois
+
 	}
 	
 	//@GetMapping , GetMapping et Request ici ,c'est exactement la meme chose

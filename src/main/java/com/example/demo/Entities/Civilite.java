@@ -1,4 +1,4 @@
-package com.example.demo.carnet;
+package com.example.demo.Entities;
 
 public enum Civilite {
 

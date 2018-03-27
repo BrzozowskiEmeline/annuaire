@@ -1,18 +1,31 @@
-package com.example.demo.carnet;
+package com.example.demo.Entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
+@Table(name = "personne")
 public class Carnet {
+	@Id
+	@GeneratedValue
+	// private int id;
+	private Long id;
 
-	private int id;
 	@NotNull(message = "Message d'\'erreur")
+	@Enumerated(EnumType.STRING)
+	@Column(length = 8)
 	private Civilite civilite;
 
 	@NotBlank
@@ -29,7 +42,7 @@ public class Carnet {
 	private String dateDeNaissance;
 
 	// @NotBlank(message="{com.example.demo.annuaire.contraint.Tel.message}")
-	@Pattern(message = "{com.example.demo.annuaire.contraint.Tel.message}",regexp = "^([+]|[0]{2})[0-9]{4,14}(?:x.+)?$")
+	@Pattern(message = "{com.example.demo.annuaire.contraint.Tel.message}", regexp = "^([+]|[0]{2})[0-9]{4,14}(?:x.+)?$")
 	private String tel;
 
 	@Email
@@ -47,7 +60,7 @@ public class Carnet {
 
 	}
 
-	public Carnet(int id, Civilite civilite, String nom, String prenom, String dateDeNaissance, String tel,
+	public Carnet(/* int */Long id, Civilite civilite, String nom, String prenom, String dateDeNaissance, String tel,
 			String email, String cp, String ville) {
 
 		this.id = id;
@@ -61,11 +74,11 @@ public class Carnet {
 		this.ville = ville;
 	}
 
-	public int getId() {
+	public /* int */ Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(/* int */ Long id) {
 		this.id = id;
 	}
 

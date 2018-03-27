@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+label{
+display: block;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/carnetForm1" method="post">
+ <label name="M">Monsieur</label>
+    <input type="radio" id="M" name="civilite" value="MME">
+    <label name="MME">Madame</label>
+    <input type="radio" id="MME" name="civilite" value="M">
+    <br>
+<label>nom</label><input type=text name="nom"></br>
+<label>prenom</label><input type=text name="prenom"></br>
+<label>DateDeNaissance</label><input type=date name="dateDeNaissance"></br>
+<label>tel</label><input type=int name="tel"></br>
+<label>email</label><input type=email name="email"></br>
+<label>cp</label><input type=int name="cp"></br>
+<label>ville</label><input type=text name="ville"></br>
+<input type="submit" value="valider">
+</form>
+	
+</body>
+</html>

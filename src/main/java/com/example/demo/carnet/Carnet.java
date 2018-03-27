@@ -1,10 +1,47 @@
 package com.example.demo.carnet;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Carnet {
 
-	int id;
-	Civilite civilite;
-	String nom, prenom, dateDeNaissance, tel, email, cp, ville;
+	private int id;
+	@NotNull(message = "Message d'\'erreur")
+	private Civilite civilite;
+
+	@NotBlank
+	// @Size(min=2, max=30)
+	@Pattern(regexp = "(?i)[a-z]{2,50}", message = "{com.example.demo.annuaire.contraint.nom.message}")
+	private String nom;
+
+	@NotBlank
+	@Pattern(regexp = "(?i)[a-z\\- à-ÿ]{2,100}", message = "{com.example.demo.annuaire.contraint.prenom.message}")
+	private String prenom;
+
+	@NotBlank
+	@DateTimeFormat
+	private String dateDeNaissance;
+
+	// @NotBlank(message="{com.example.demo.annuaire.contraint.Tel.message}")
+	@Pattern(message = "{com.example.demo.annuaire.contraint.Tel.message}",regexp = "^([+]|[0]{2})[0-9]{4,14}(?:x.+)?$")
+	private String tel;
+
+	@Email
+	private String email;
+
+	// @NotBlank
+	@Pattern(regexp = "[0-9]{5}", message = "n'\'oubliez pas d'\'entrer votre code postal")
+	private String cp;
+
+	// @NotEmpty
+	@Pattern(regexp = "(?i)[a-z- ]{1,45}", message = "{javax.validation.constraints.NotEmpty.message}")
+	private String ville;
 
 	public Carnet() {
 
@@ -12,7 +49,7 @@ public class Carnet {
 
 	public Carnet(int id, Civilite civilite, String nom, String prenom, String dateDeNaissance, String tel,
 			String email, String cp, String ville) {
-		super();
+
 		this.id = id;
 		this.civilite = civilite;
 		this.nom = nom;

@@ -1,33 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org" >
 <head>
-<style type="text/css">
+<style type="style.css/css">
 label{
 display: block;
 }
+
+
+
 </style>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
-<form action="/carnetForm" method="post">
+<form th:action="@{/carnetForm1}" th:object="${carnet}" method="post">
+ <label for="M">Monsieur</label><input type="radio" id="M" name="civilite" value="MME" th:field="*{civilite}">
+ <label for="MME">Madame</label><input type="radio" id="MME" name="civilite" value="M" th:field="*{civilite}">
+ 
+ <!-- permet de mettre un message d'erreur -->
+ <p th:if="${#fields.hasErrors('civilite')}" th:errors="*{civilite}"></p><br>
+    
+<label for="nom">Nom</label> <input type=text id="nom" th:field="*{nom}"></br>
+<p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></p><br>
 
+<label for="prenom">Prenom</label><input type=text id="prenom" th:field="*{prenom}"></br>
+<p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></p><br>
 
- <label for="mr">Monsieur</label>
-    <input type="radio" id="mr" name="civilite" value="MONSIEUR">
-    <label for="mme">Madame</label>
-    <input type="radio" id="mme" name="civilite" value="MADAME">
-    <br>
-<label>nom</label><input type=text name="nom"></br>
-<label>prenom</label><input type=text name="prenom"></br>
-<label>date_De_Naissance</label><input type=text name="date_De_Naissance"></br>
-<label>tel</label><input type=text name="tel"></br>
-<label>email</label><input type=text name="email"></br>
-<label>cp</label><input type=text name="cp"></br>
-<label>ville</label><input type=text name="ville"></br>
+<label for="dateDeNaissance" >Date De Naissance</label><input type=date th:field="*{dateDeNaissance}"></br>
+
+<label for="tel">Tel</label><input type="number" id="tel" th:field="*{tel}"></br>
+<p th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></p><br>
+
+<label for="email">Email</label><input type="text" id="email" th:field="*{email}"></br>
+<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p><br>
+
+<label for="cp">Code Postal</label><input type="number" id="cp" th:field="*{cp}"></br>
+<p th:if="${#fields.hasErrors('cp')}" th:errors="*{cp}"></p><br>
+
+<label for="ville">Ville</label><input type="text" id="ville" th:field="*{ville}"></br>
+<p th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"></p><br>
+
 <input type="submit" value="valider">
 </form>
-
+	
 </body>
 </html>

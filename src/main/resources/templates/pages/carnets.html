@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlms:th="http://thymeleaf.org" >
+<html xmlns:th="http://thymeleaf.org" >
 
 
 <head>
@@ -27,6 +27,13 @@
 	
 	<ul><li th:text="${carnets1.id}"></li>
 	<li th:text="${carnets1.civilite}">civilite</li>
+	<li th:text="${carnet.nom}">nom </li>
+	<li th:text="${carnet.prenom}">prenom</li>
+	<li th:text="${carnet.dateDeNaissance}">dateDeNaissance</li>
+	<li th:text="${carnet.tel}">tel</li>
+	<li th:text="${carnet.email}">email</li>
+	<li th:text="${carnet.cp}">cp</li>
+	<li th:text="${carnet.ville}">ville</li>
 	</ul>
 	
 

@@ -2,6 +2,7 @@ package com.example.demo.carnet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -79,4 +80,17 @@ public class CarnetController {
 
 	}
 
+	@RequestMapping(value ="/carnet/{id}")
+	public void delete(@PathVariable Long id) {
+		Iterator<Carnet> it = listeCarnets.iterator();
+		while(it.hasNext()) {
+			Carnet carnet = it.next();
+			if(carnet.getId().equals(id)) {
+				it.remove();
+			}
+		}
+	}
+	
+	this.listeCarnets.removeIf(obj -> obj.getId().equals(id));
+	
 }

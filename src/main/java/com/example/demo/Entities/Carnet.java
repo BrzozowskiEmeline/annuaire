@@ -46,7 +46,7 @@ public class Carnet {
 	private String dateDeNaissance;
 
 	// @NotBlank(message="{com.example.demo.annuaire.contraint.Tel.message}")
-	@Pattern(message = "{com.example.demo.annuaire.contraint.Tel.message}", regexp = "^([+]|[0]{2})[0-9]{4,14}(?:x.+)?$")
+	@Pattern(message = "{com.example.demo.annuaire.contraint.Tel.message}", regexp = "[0-9]{4,14}")
 	@Column(length = 10)
 	private String tel;
 

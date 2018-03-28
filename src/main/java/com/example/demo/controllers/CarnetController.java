@@ -22,12 +22,13 @@ import com.example.demo.services.CarnetServices;
 @RestController
 public class CarnetController {
 //	ArrayList<Carnet> listeCarnets = new ArrayList<Carnet>(Arrays.asList(
-//
-//			new Carnet(1, Civilite.M, "Besson", "Luc", "1959-13-18", "0000000000", "5 avenue de l'Element", "75015",
-//					"Paris"),
-//			new Carnet(2, Civilite.MME, "Ullmann", "Liv", "1938-12-16", "0101010101", "1-16-5", "22", "Tokyo"),
-//			new Carnet(3, Civilite.M, "Lynch", "David", "1946-01-20", "0202020202", "423 Fire Terrace", "59801",
-//					"Missoula")));
+//	new Carnet(1L, Civilite.M, "Besson", "Luc", "1959-12-18", "0000000000", "5 avenue de l'Element", "75015",
+//			"Paris"));
+//	new Carnet((long) 2, Civilite.MME, "Ullmann", "Liv", "1938-12-16", "0101010101", "1-16-5", "22",
+//			"Tokyo"));
+//	new Carnet((long) 3, Civilite.M, "Lynch", "David", "1946-01-20", "0202020202", "423 Fire Terrace",
+//			"59801", "Missoula"));
+			
 //
 //	@GetMapping("/carnets")
 //	public ArrayList<Carnet> getAllRest() {
@@ -47,7 +48,7 @@ public class CarnetController {
 //		return mav;
 //
 //	}
-//
+////methode qui permet d'envoyer un formulaire
 //	// @GetMapping , GetMapping et Request ici ,c'est exactement la meme chose
 //	@RequestMapping(method = RequestMethod.GET, value = "/carnet/{id}")
 //	public ModelAndView getById(@PathVariable Integer id) {
@@ -100,15 +101,40 @@ public class CarnetController {
 ////	this.listeCarnets.removeIf(obj -> obj.getId().equals(id));
 ////	}
 
-@Autowired
-private CarnetServices cs;
+	@Autowired
+	private CarnetServices cs;
 
+	@RequestMapping("/testadd")
+	public void addTest(){
+		cs.add(new Carnet(1L, Civilite.M, "Besson", "Luc", "1959-10-18", "0618555723", "mohamed.chebbi@viacesi.fr", "75015", "Paris"));
+		cs.add(new Carnet(2L, Civilite.MME, "Ullmann", "Liv", "1938-12-16", "061850423", "chebbimohamed1987@live.fr", "59800", "Tokyo"));
+		cs.add(new Carnet(3L, Civilite.M, "Lynch", "David", "1946-01-20", "061850423", "chebbimohamed1987@gmail.com", "59801", "Missoula"));
 
-@GetMapping("/carnets")
-public List<Carnet> getAllCarnet() {
-	return cs.getAllCarnets();
+	}
+
+	@GetMapping("/carnets")
+	public List<Carnet> getAllCarnet() {
+		return cs.getAllCarnets();
+	}
+
+	// methode renvoie 1 id
+	@RequestMapping(method = RequestMethod.GET, value = "/carnet/{id}")
+	public ModelAndView getById(@PathVariable long id) {
+		ModelAndView mav = new ModelAndView("pages/carnet");
+		return mav.addObject("carnet",cs.getCarnets(id));
+
+	}
+
+	// supprime tout
+//	 @RequestMapping(method= RequestMethod.DELETE, value="/deleteAll")
+//	 public void DeleteAll() {
+//	 cs.DeleteAll();
+//	 }
+
+	// supprime 1 element/id
+	@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+	public void delete(@PathVariable Integer id) {
+		cs.delete(id);
+	}
+
 }
-
-
-}
-

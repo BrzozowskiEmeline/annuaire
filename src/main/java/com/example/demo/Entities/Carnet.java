@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "personne")
 public class Carnet {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	// private int id;
 	private Long id;
 
@@ -31,18 +32,22 @@ public class Carnet {
 	@NotBlank
 	// @Size(min=2, max=30)
 	@Pattern(regexp = "(?i)[a-z]{2,50}", message = "{com.example.demo.annuaire.contraint.nom.message}")
+	@Column(length = 30)
 	private String nom;
 
 	@NotBlank
 	@Pattern(regexp = "(?i)[a-z\\- à-ÿ]{2,100}", message = "{com.example.demo.annuaire.contraint.prenom.message}")
+	@Column(length = 50)
 	private String prenom;
 
 	@NotBlank
 	@DateTimeFormat
+	@Column(columnDefinition="date", name="birthday", length=5 )
 	private String dateDeNaissance;
 
 	// @NotBlank(message="{com.example.demo.annuaire.contraint.Tel.message}")
 	@Pattern(message = "{com.example.demo.annuaire.contraint.Tel.message}", regexp = "^([+]|[0]{2})[0-9]{4,14}(?:x.+)?$")
+	@Column(length = 10)
 	private String tel;
 
 	@Email
@@ -50,10 +55,12 @@ public class Carnet {
 
 	// @NotBlank
 	@Pattern(regexp = "[0-9]{5}", message = "n'\'oubliez pas d'\'entrer votre code postal")
+	@Column(name="codePostal", length=5)
 	private String cp;
 
 	// @NotEmpty
 	@Pattern(regexp = "(?i)[a-z- ]{1,45}", message = "{javax.validation.constraints.NotEmpty.message}")
+	@Column(length = 50)
 	private String ville;
 
 	public Carnet() {

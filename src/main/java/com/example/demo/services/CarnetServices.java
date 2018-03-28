@@ -40,7 +40,7 @@ public class CarnetServices {
 	
 
 	// renvoie 1 element
-	public Carnet getCarnets(long id) {
+	public Carnet getCarnets(Long id) {
 		return cr.getOne(id);
 	}
 	
@@ -52,12 +52,12 @@ public class CarnetServices {
 	
 	
 	// supprime 1 id
-	public void delete(long id) {
+	public void delete(Long id) {
 		cr.deleteById(id);
 	}
 	
-	public Optional<Carnet> findById(Long id) {
-		return cr.findById(id);
+	public Carnet findById(Long id) {
+		return cr.findById(id).get();
 	}
 
 	

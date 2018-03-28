@@ -8,11 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 th:text="${mav}"> </h1>
+
 
 <div>
-	<ul th:each="carnet :${carnets}">
-	<li th:text="${carnet.id}"></li>
+		
+	<ul><li th:text="${carnet.id}"></li>
 	<li th:text="${carnet.civilite}">civilite</li>
 	<li th:text="${carnet.nom}">nom </li>
 	<li th:text="${carnet.prenom}">prenom</li>
@@ -21,10 +21,13 @@
 	<li th:text="${carnet.email}">email</li>
 	<li th:text="${carnet.cp}">cp</li>
 	<li th:text="${carnet.ville}">ville</li>
-	
 	</ul>
 	
-	
+	<p>Supprimer : </p>
+	<form th:action="@{|/delete/${carnet.id}|}" th:object="${carnet}" method="post">
+	<input th:type="hidden" th:name="_method" th:value="DELETE">
+	<input type="submit" value="Supprimer">
+	</form>
 	
 	
 </div>

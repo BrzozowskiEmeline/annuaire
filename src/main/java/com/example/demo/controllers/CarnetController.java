@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -118,23 +120,23 @@ public class CarnetController {
 	}
 
 	// methode renvoie 1 id
-	@RequestMapping(method = RequestMethod.GET, value = "/carnet/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/carnet1/{id}")
 	public ModelAndView getById(@PathVariable long id) {
-		ModelAndView mav = new ModelAndView("pages/carnet");
+		ModelAndView mav = new ModelAndView("pages/carnet1");
 		return mav.addObject("carnet",cs.getCarnets(id));
 
 	}
 
 	// supprime tout
 //	 @RequestMapping(method= RequestMethod.DELETE, value="/deleteAll")
-//	 public void DeleteAll() {
+//	 public void DeleteAll(@PathVariable Interger id) {
 //	 cs.DeleteAll();
 //	 }
 
 	// supprime 1 element/id
-	@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
-	public void delete(@PathVariable Integer id) {
-		cs.delete(id);
-	}
-
+	  @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+	    public ModelAndView delete(@PathVariable Long id){
+	        cs.delete(id);
+	        return new ModelAndView("redirect:/carnets/");
+	    }
 }

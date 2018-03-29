@@ -1,5 +1,8 @@
 package com.example.demo.Entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,17 +10,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "personne")
+@Table(name = "adress")
 public class Carnet {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
@@ -64,9 +67,35 @@ public class Carnet {
 	private String ville;
 
 	public Carnet() {
-
+	
+		adress =new ArrayList<>();
+		comptes =new ArrayList<>();
 	}
 
+
+
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
+
+
+	@ManyToMany
+	private List<Adress> adress;
+	
+	@ManyToMany
+	private List<Compte> comptes;
+	
+	
+	
+
+	
+	
+	
 	public Carnet(/* int */Long id, Civilite civilite, String nom, String prenom, String dateDeNaissance, String tel,
 			String email, String cp, String ville) {
 
@@ -79,6 +108,14 @@ public class Carnet {
 		this.email = email;
 		this.cp = cp;
 		this.ville = ville;
+	}
+
+	public List<Adress> getAdress() {
+		return adress;
+	}
+
+	public void setAdress(List<Adress> adress) {
+		this.adress = adress;
 	}
 
 	public /* int */ Long getId() {
@@ -152,5 +189,7 @@ public class Carnet {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+	
+	
 
 }

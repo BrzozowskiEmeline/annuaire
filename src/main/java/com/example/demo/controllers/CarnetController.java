@@ -114,7 +114,8 @@ public class CarnetController {
 	@Autowired
 	private CarnetServices cs;
 
-	@RequestMapping("/testadd")
+	//ajout ds le carnet
+	@RequestMapping("/carnetadd")
 	public void addTest() {
 		cs.add(new Carnet(1L, Civilite.M, "Besson", "Luc", "1959-10-18", "0618555723", "mohamed.chebbi@viacesi.fr",
 				"75015", "Paris"));
@@ -124,7 +125,7 @@ public class CarnetController {
 				"59801", "Missoula"));
 
 	}
-
+	//affiche
 	@GetMapping("/carnets")
 	public List<Carnet> getAllCarnet() {
 		return cs.getAllCarnets();
@@ -157,4 +158,6 @@ public class CarnetController {
 		cs.add(carnet);
 		return new ModelAndView("redirect:/carnets/");
 	}
+	
+	
 }
